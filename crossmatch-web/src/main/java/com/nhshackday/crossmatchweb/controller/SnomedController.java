@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class SnomedController {
@@ -45,9 +46,8 @@ public class SnomedController {
             "</select>";
   }
 
-
   @GetMapping({"/snomed/search"})
-  public String getSnomedSearch(@RequestParam(value = "name") String name, @RequestParam(value = "s") String s, @RequestParam(value = "ecl") String ecl) {
+  public @ResponseBody String getSnomedSearch(@RequestParam(value = "name") String name, @RequestParam(value = "s") String s, @RequestParam(value = "ecl") String ecl) {
     if (hermes == null) {
       throw new IllegalArgumentException("Hermes not configured");
     }
