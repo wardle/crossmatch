@@ -18,6 +18,7 @@ public class SnomedController {
   private static final List<Project> PROJECTS = Project.ALL;
 
   @GetMapping({"/snomed/search"})
-  public String getSnomedSearch(@RequestParam(value = "s") String s, @RequestParam(value = "ecl") String ecl)) {
+  public String getSnomedSearch(@RequestParam(value = "s") String s, @RequestParam(value = "ecl") String ecl) {
+    return "";
   }
 }
