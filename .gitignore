@@ -1,3 +1,5 @@
 .clj-kondo
 .idea
 .gradle
+crossmatch-web/build
+crossmatch-web/gradle
