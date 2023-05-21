@@ -1,5 +1,6 @@
 package com.nhshackday.crossmatchweb.controller;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,7 +48,13 @@ public class SnomedController {
 
   @GetMapping({"/snomed/search"})
   public String getSnomedSearch(@RequestParam(value = "name") String name, @RequestParam(value = "s") String s, @RequestParam(value = "ecl") String ecl) {
-    List<IResult> results = Collections.emptyList(); // TODO: call autocomplete service
+    if (hermes == null) {
+      throw new IllegalArgumentException("Hermes not configured");
+    }
+    if (name == null || s == null || ecl == null || name.isBlank() || s.isBlank() || ecl.isBlank()) {
+      throw new IllegalArgumentException("Invalid parameter(s)");
+    }
+    List<IResult> results = hermes.search(Hermes.newSearchRequestBuilder().setMaxHits(500).setS(s).setConstraint(ecl).setFuzzy(0).setFallbackFuzzy(2).build());
     return makeSelect(name, results);
   }
 }
