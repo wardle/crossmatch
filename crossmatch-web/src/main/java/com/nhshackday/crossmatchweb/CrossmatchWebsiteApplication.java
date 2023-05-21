@@ -18,7 +18,7 @@ public class CrossmatchWebsiteApplication {
 			System.out.println(result.term());
 		};
 
-		//SpringApplication.run(CrossmatchWebsiteApplication.class, args);
+		SpringApplication.run(CrossmatchWebsiteApplication.class, args);
 	}
 
 }
