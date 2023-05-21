@@ -1,0 +1,10 @@
+<html>
+<body>
+<h1>Projects</h1>
+<div th:each="project : ${projects}">
+  <p>
+    <a th:href="@{'/projects/'+${project.id}}" th:text="${project.name}"></a>
+  </p>
+</div>
+</body>
+</html>
