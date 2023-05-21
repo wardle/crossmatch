@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.nhshackday.crossmatchweb.model.Project;
-import com.eldrix.hermes.client.Hermes;
 import com.eldrix.hermes.sct.IResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,11 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class SnomedController {
-
-  @Autowired
-  private Hermes hermes;
-  private static final List<Project> PROJECTS = Project.ALL;
-
 
   private static String makeOption(IResult result) {
     return "<option value=\"" +
@@ -46,15 +40,17 @@ public class SnomedController {
             "</select>";
   }
 
+  private static List<IResult> performSearch(String s, String ecl) {
+    // TODO: call the HTTP API here
+    return Collections.emptyList();
+  }
+
   @GetMapping({"/snomed/search"})
   public @ResponseBody String getSnomedSearch(@RequestParam(value = "name") String name, @RequestParam(value = "s") String s, @RequestParam(value = "ecl") String ecl) {
-    if (hermes == null) {
-      throw new IllegalArgumentException("Hermes not configured");
-    }
     if (name == null || s == null || ecl == null || name.isBlank() || s.isBlank() || ecl.isBlank()) {
       throw new IllegalArgumentException("Invalid parameter(s)");
     }
-    List<IResult> results = hermes.search(Hermes.newSearchRequestBuilder().setMaxHits(500).setS(s).setConstraint(ecl).setFuzzy(0).setFallbackFuzzy(2).build());
+    List<IResult> results = performSearch(s, ecl);
     return makeSelect(name, results);
   }
 }
