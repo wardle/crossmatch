@@ -18,21 +18,19 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.nhshackday.crossmatchweb;
+package com.nhshackday.crossmatchweb.external;
 
-import com.eldrix.hermes.client.Hermes;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import java.io.Serializable;
+import lombok.Data;
 
-@Configuration
-public class HermesConfig {
+@Data
+public class HermesResult implements Serializable {
+ private long id;
 
- @Value("${hermes.path}")
- private String fileLocation;
+ private long conceptId;
 
- @Bean
- public Hermes getHermes() {
-  return Hermes.openLocal( fileLocation);
- }
+ private String term;
+
+ private String preferredTerm;
+
 }
