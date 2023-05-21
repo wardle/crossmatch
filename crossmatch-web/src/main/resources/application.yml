@@ -1,0 +1,4 @@
+server:
+  port: 8080
+hermes:
+  path: "/home/joseph/git/crossmatch/snomed-2023-04-05.db"

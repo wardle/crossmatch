@@ -1,0 +1,23 @@
+<html>
+<body>
+
+<p>We're on</p>
+<form action="/profile" th:method="${user.id} != null ? PUT : POST" th:attr="action=@{/profile}">
+  <fieldset>
+    <div>
+    <input type="text" name="name"  th:value="${user.name}"/>
+    </div><div>
+    <input type="checkbox" name="cardio" th:checked="${user.cardio}" />
+  </div><div>
+    <input type="checkbox" name="neuro" th:checked="${user.neuro}" />
+  </div><div>
+    <input type="checkbox" name="diabetic" th:checked="${user.diabetic}" />
+  </div><div>
+    <input type="submit" value="Save"/>
+  </div>
+  </fieldset>
+</form>
+
+<a href="/projects">Projects</a>
+</body>
+</html>
