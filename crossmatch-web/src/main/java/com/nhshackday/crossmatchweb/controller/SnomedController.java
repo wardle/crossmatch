@@ -18,7 +18,14 @@ public class SnomedController {
   private static final List<Project> PROJECTS = Project.ALL;
 
   @GetMapping({"/snomed/search"})
-  public String getSnomedSearch(@RequestParam(value = "s") String s, @RequestParam(value = "ecl") String ecl) {
-    return "";
+  public String getSnomedSearch(@RequestParam(value = "name") String name, @RequestParam(value = "s") String s, @RequestParam(value = "ecl") String ecl) {
+    String sb = "<select " +
+            "name=\"" +
+            name +
+            "\" id=\"" +
+            name +
+            "\">" +
+            "</select>";
+    return sb;
   }
 }
