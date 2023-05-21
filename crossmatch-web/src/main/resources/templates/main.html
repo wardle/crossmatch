@@ -8,5 +8,19 @@
 </head>
 <body>
 
+
+<div>
+    <h3>Search example</h3>
+    <form>
+        <input type="search" name="search" hx-get=/snomed/search"
+               hx-trigger="keyup changed delay:500ms, search"
+               hx-target="#search-results">
+    </form>
+    <div id="search-results">
+        Search results might appear here if it works
+    </div>
+</div>
+
+
 </body>
 </html>
